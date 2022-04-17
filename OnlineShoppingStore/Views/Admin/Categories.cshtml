@@ -1,0 +1,58 @@
+﻿@model List<OnlineShoppingStore.DAL.Tbl_Category>
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+
+}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Manutenção de Categorias
+                    <a href="../Admin/AddCategory" class="btn btn-info fa-pull-right">Adicionar</a>
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Cat. ID</th>
+                                <th>Nome da Categoria</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Cat. ID</th>
+                                <th>Nome da Categoria</th>
+                                <th>Ações</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.CategoryId</td>
+                                    <td>@item.CategoryName</td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "CategoryEdit", new { catId = item.CategoryId })
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End of Main Content -->
+

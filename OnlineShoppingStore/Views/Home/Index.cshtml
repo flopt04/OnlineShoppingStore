@@ -1,0 +1,192 @@
+﻿@model OnlineShoppingStore.Models.Home.HomeIndexViewModel
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<!-- Start Banner Hero -->
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="https://comunidadeslusofonas.pt/wp-content/uploads/2021/10/Portugueses-dispostos-a-pagar-mais-por-moda-etica-e-sustentavel.jpg" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left align-self-center">
+                            <h1 class="h1 text-success"><b>100%</b> Amiga do ambiente </h1>
+                            <h3 class="h2">Tudo por si</h3>
+                            <p>
+                                A Ms é uma empresa focada em materiais sustentáveis, transformamos materiais como cortiça e outros materiais recicláveis em roupa de alta qualidade
+                                porque nos importamos com o meio ambiente e com os nossos clientes
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="https://wp-cdn.etiquetaunica.com.br/blog/wp-content/uploads/2020/05/22135019/capa-post-moda-circular-220520.jpg" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1">Transformamos o impossivel</h1>
+                            <h3 class="h2">Em belas pessas de roupa</h3>
+                            <p>
+                                Todas as nossas pecas de roupa são fabricadas através de materiais recicláveis
+                                Tudo pensado em <strong>si</strong> e no meio <strong>ambiente</strong>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="https://mo-online.com/on/demandware.static/-/Sites/default/dw2c5ffa90/MO/Categorias/more_forasustainablefashion_3.png" alt="">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1">A Cortica</h1>
+                            <h3 class="h2">Faz parte deste projeto</h3>
+                            <p>
+                                Grande parte mão-de-obra nossa mão de obra leva cortiça, o que faz os produtos durarem mais e serem mais confortáveis
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <i class="fas fa-chevron-right"></i>
+    </a>
+</div>
+<!-- End Banner Hero -->
+<!-- Section-->
+
+<div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="w-100 pt-1 mb-5 text-right">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="get" class="modal-content modal-body border-0 p-0">
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                <button type="submit" class="input-group-text bg-success text-light">
+                    <i class="fa fa-fw fa-search text-white"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Start Categories of The Month -->
+<section class="container py-5">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">Categorias em Alta</h1>
+            <p>
+                !Estas são as categorias mais procuradas este mês!
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-monogram-embossed-utility-jacket-ready-to-wear--HIL46EQXS900_PM2_Front%20view.png?wid=2048&hei=2048" class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3">Casacos</h5>
+            <p class="text-center"><a class="btn btn-success">Compre</a></p>
+        </div>
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-embossed-karakoram-pyjama-trousers-ready-to-wear--HNP09WND7743_PM1_Detail%20view.jpg?wid=656" class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">Calcas</h2>
+            <p class="text-center"><a class="btn btn-success">Compre</a></p>
+        </div>
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-multiple-wallet-monogram-other-small-leather-goods--M80850_PM1_Side%20view.png?wid=656&hei=656" class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">Acessorios</h2>
+            <p class="text-center"><a class="btn btn-success">Compre</a></p>
+        </div>
+    </div>
+</section>
+<!-- End Categories of The Month -->
+<!-- Start Featured Product -->
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row">
+            @foreach (var item in Model.ListOfProducts)
+            {
+
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+
+                        <a href="#">
+                            <img src="~/ProductImg/@item.ProductImage" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <div class="product-item-badge">
+                                @if (item.IsFeatured == true)
+                                {
+                                    <p>Recente</p>
+                                }
+                                else
+                                {
+                                    <p>Antigo</p>
+                                }
+                            </div>
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">@item.Price€</li>
+                            </ul>
+
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">@item.ProductName</a>
+                            <p class="card-text">
+                               @item.Description
+                            </p>
+                            <p class="text-muted">
+                                @if (item.Quantity > 0)
+                                {
+
+                                <p>Disponivel</p>
+
+                                using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId }, FormMethod.Post))
+                                {
+                                    <button type="submit" class="btn btn-outline-dark pull-right"><i class="bi-cart-fill me-1"></i></button>
+                                }
+                            }
+                            else
+                            {
+                                <p>Esgotado</p>
+                            }
+
+                            </div>
+                        </div>
+                    </div>
+                }
+        </div>
+    </div>
+    <div class="container">
+        @Html.PagedListPager(Model.ListOfProducts, page => Url.Action("Index", new { page, search = Request.QueryString["search"] }))
+    </div>
+</section>
+
