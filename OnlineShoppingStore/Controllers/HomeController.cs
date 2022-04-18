@@ -10,7 +10,9 @@ namespace OnlineShoppingStore.Controllers
 {
     public class HomeController : Controller
     {
-        dbMyOnlineShoppingEntities ctx = new dbMyOnlineShoppingEntities();
+        dbMyOnlineShoppingEntities1 ctx = new dbMyOnlineShoppingEntities1();
+      
+        
         public ActionResult Index(string search, int? page)
         {
             HomeIndexViewModel model = new HomeIndexViewModel();
@@ -115,5 +117,8 @@ namespace OnlineShoppingStore.Controllers
             Session["cart"] = cart;
             return Redirect("Index");
         }
+
+
+      
     }
 }

@@ -2124,6 +2124,7 @@
     <Content Include="AdminStyle\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="AdminStyle\vendor\jquery\jquery.min.map" />
     <Content Include="AdminStyle\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="EmailTemplate\Text.cshtml" />
     <EntityDeploy Include="DAL\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -2131,7 +2132,6 @@
     <Content Include="DAL\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="EmailTemplate\Text.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2154,8 +2154,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />

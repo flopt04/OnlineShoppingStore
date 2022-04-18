@@ -8,17 +8,21 @@ using System.Text;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace OnlineShoppingStore.Controllers
 {
     public class RegisterController : Controller
     {
-        dbMyOnlineShoppingEntities db = new dbMyOnlineShoppingEntities();
+        dbMyOnlineShoppingEntities1 db = new dbMyOnlineShoppingEntities1();
+
+       
         public ActionResult Index()
         {
             return View();
         }
-
+    
+        
         public JsonResult SaveData(Tbl_Members model)
         {
             model.IsValid = false;
@@ -109,11 +113,20 @@ namespace OnlineShoppingStore.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult AfterLogin()
+        public ActionResult AfterLogin(Tbl_Members model)
         {
+            var DataItem = db.Tbl_Members.Where(x => x.Role == model.Role).SingleOrDefault();
+
             if (Session["UserID"] != null)
             {
-                return RedirectToAction("Index","Home");
+                if (DataItem.Role == "Admin")
+                {
+                    return RedirectToAction("DashBoard", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
@@ -127,6 +140,5 @@ namespace OnlineShoppingStore.Controllers
             Session.Abandon();
             return RedirectToAction("Index");
         }
-
     }
 }

@@ -13,10 +13,10 @@ namespace OnlineShoppingStore.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbMyOnlineShoppingEntities : DbContext
+    public partial class dbMyOnlineShoppingEntities1 : DbContext
     {
-        public dbMyOnlineShoppingEntities()
-            : base("name=dbMyOnlineShoppingEntities")
+        public dbMyOnlineShoppingEntities1()
+            : base("name=dbMyOnlineShoppingEntities1")
         {
         }
     
@@ -29,10 +29,10 @@ namespace OnlineShoppingStore.DAL
         public virtual DbSet<Tbl_CartStatus> Tbl_CartStatus { get; set; }
         public virtual DbSet<Tbl_Category> Tbl_Category { get; set; }
         public virtual DbSet<Tbl_MemberRole> Tbl_MemberRole { get; set; }
+        public virtual DbSet<Tbl_Members> Tbl_Members { get; set; }
         public virtual DbSet<Tbl_Product> Tbl_Product { get; set; }
         public virtual DbSet<Tbl_Roles> Tbl_Roles { get; set; }
         public virtual DbSet<Tbl_ShippingDetails> Tbl_ShippingDetails { get; set; }
         public virtual DbSet<Tbl_SlideImage> Tbl_SlideImage { get; set; }
-        public virtual DbSet<Tbl_Members> Tbl_Members { get; set; }
     }
 }

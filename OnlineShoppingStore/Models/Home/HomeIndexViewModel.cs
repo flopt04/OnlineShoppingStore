@@ -14,7 +14,7 @@ namespace OnlineShoppingStore.Models.Home
     {
 
         public GenericUnitOfWork _unitOfWork = new GenericUnitOfWork();
-        dbMyOnlineShoppingEntities context = new dbMyOnlineShoppingEntities();
+        dbMyOnlineShoppingEntities1 context = new dbMyOnlineShoppingEntities1();
         public IPagedList<Tbl_Product> ListOfProducts { get; set; }
         public HomeIndexViewModel CreateModel(string search,int pageSize, int? page)
         {

@@ -11,7 +11,8 @@ namespace OnlineShoppingStore.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Members
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,14 +21,15 @@ namespace OnlineShoppingStore.DAL
             this.Tbl_ShippingDetails = new HashSet<Tbl_ShippingDetails>();
         }
     
+        [Key]
         public int MemberId { get; set; }
         public string FristName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public Nullable<bool> IsValid { get; set; }
-        public string Username { get; set; }
-
+        public string Role { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ShippingDetails> Tbl_ShippingDetails { get; set; }
     }

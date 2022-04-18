@@ -130,6 +130,9 @@
                         <div class="form-group">
                             <input type="password" name="Password" id="Password" placeholder="Password" class="form-control form-control-user">
                         </div>
+
+                            <input style="color:white; background-color:white" type="text" name="Role" id="Role" placeholder="Role" class="form-control form-control-user">
+                       
                         <div class="form-group">
                             <div class="custom-control custom-checkbox small">
                                 <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -162,8 +165,9 @@
             var lname = $("#lname").val();
             var pwd = $("#Password").val();
             var email = $("#Email").val();
+            var role = val("Cliente");
 
-            if (name == "" || pwd == "" || email == "" || fname == "" || lname == "") {
+            if (name == "" || pwd == "" || email == "" || fname == "" || lname == "" || role == "Cliente") {
                 $("#message1").hide();
                 $("#message2").show();
                 return false;
