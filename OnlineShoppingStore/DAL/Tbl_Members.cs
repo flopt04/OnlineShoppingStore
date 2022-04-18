@@ -26,7 +26,8 @@ namespace OnlineShoppingStore.DAL
         public string Email { get; set; }
         public string Password { get; set; }
         public Nullable<bool> IsValid { get; set; }
-    
+        public string Username { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ShippingDetails> Tbl_ShippingDetails { get; set; }
     }

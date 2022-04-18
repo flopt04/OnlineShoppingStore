@@ -96,5 +96,37 @@ namespace OnlineShoppingStore.Controllers
                 throw ex;
             }
         }
+
+        public JsonResult CheckValidUser(Tbl_Members model)
+        {
+            string result = "Fail";
+            var DataItem = db.Tbl_Members.Where(x => x.Email == model.Email && x.Password == model.Password).SingleOrDefault();
+            if (DataItem != null)
+            {
+                Session["UserID"] = DataItem.MemberId.ToString();
+                Session["UserName"] = DataItem.LastName.ToString();
+                result = "Success";
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult AfterLogin()
+        {
+            if (Session["UserID"] != null)
+            {
+                return RedirectToAction("Index","Home");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Index");
+        }
+
     }
 }

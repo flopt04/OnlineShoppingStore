@@ -36,6 +36,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
                                     <form id="loginForm">
+                                        <div id="msg"><ul style="color:red;"> Nome de Utilizador ou Passwoard invalido</ul></div>
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                    name="Email" id="logEmail" aria-describedby="emailHelp"
@@ -57,7 +58,7 @@
 
                                     </form>
                                     <hr>
-                                    <button class="btn btn-primary btn-user btn-block form-control" type="submit" onclick="Login()"><i class="glyphicon glyphicon-log-in"></i> Login</button>
+                                    <button class="btn btn-primary btn-user btn-block btn-info form-control" type="submit" onclick="Login()"><i class="glyphicon glyphicon-log-in"></i> Login</button>
                                 </div>
                                 <hr>
                                 <div class="text-center">
@@ -181,27 +182,25 @@
             });
         }
 
-        ////Login System
-        //$("#msg").hide();
-
-        //var Login = function () {
-        //    var data = $("#loginForm").serialize();
-        //    $.ajax({
-        //        type: "post",
-        //        url: "/Register/CheckValidUser",
-        //        data: data,
-        //        success: function (result) {
-        //            if (result == "Fail") {
-        //                $("#loginForm")[0].reset();
-        //                $("#msg").show();
-        //            }
-        //            else {
-        //                window.location.href = "/Register/AfterLogin";
-        //                $("#msg").hide();
-        //            }
-        //        }
-        //    })
-        //}
+        var Login = function () {
+            $("#msg").hide();
+            var data = $("#loginForm").serialize();
+            $.ajax({
+                type: "post",
+                url: "/Register/CheckValidUser",
+                data: data,
+                success: function (result) {
+                    if (result == "Fail") {
+                        $("#loginForm")[0].reset();
+                        $("#msg").show();
+                    }
+                    else {
+                        window.location.href = "/Register/AfterLogin";
+                        $("#msg").hide();
+                    }
+                }
+            })
+        }
     </script>
 
 
