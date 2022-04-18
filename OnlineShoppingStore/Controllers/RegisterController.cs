@@ -2,7 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace OnlineShoppingStore.Controllers
@@ -17,10 +21,80 @@ namespace OnlineShoppingStore.Controllers
 
         public JsonResult SaveData(Tbl_Members model)
         {
+            model.IsValid = false;
             db.Tbl_Members.Add(model);
             db.SaveChanges();
+            BuildEmailTemplate(model.MemberId);
             return Json("Registro efetuado com sucesso", JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Confirm(int regId)
+        {
+            ViewBag.regID = regId;
+            return View();
+        }
+        public JsonResult RegisterConfirm(int regId)
+        {
+            Tbl_Members Data = db.Tbl_Members.Where(x => x.MemberId == regId).FirstOrDefault();
+            Data.IsValid = true;
+            db.SaveChanges();
+            var msg = "O teu Email foi Verificado!";
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+        private void BuildEmailTemplate(int regID)
+        {
+            string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
+            var regInfo = db.Tbl_Members.Where(x => x.MemberId == regID).FirstOrDefault();
+            var url = "https://localhost:44314/" + "Register/Confirm?regId=" + regID;
+            body = body.Replace("@ViewBag.ConfirmationLink", url);
+            body = body.ToString();
+            BuildEmailTemplate("A tua conta foi creada com sucesso", body, regInfo.Email);
+        }
 
+        public static void BuildEmailTemplate(string subjectText, string bodyText, string sendTo)
+        {
+            string from, to, bcc, cc, subject, body;
+            from = "ms.materiais.mod16@gmail.com";
+            to = sendTo.Trim();
+            bcc = "";
+            cc = "";
+            subject = subjectText;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(bodyText);
+            body = sb.ToString();
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(from);
+            mail.To.Add(new MailAddress(to));
+            if (!string.IsNullOrEmpty(bcc))
+            {
+                mail.Bcc.Add(new MailAddress(bcc));
+            }
+            if (!string.IsNullOrEmpty(cc))
+            {
+                mail.CC.Add(new MailAddress(cc));
+            }
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            SendEmail(mail);
+        }
+
+        private static void SendEmail(MailMessage mail)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = false;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Credentials = new NetworkCredential("ms.materiais.mod16@gmail.com", "eB@,$dqw");
+            try
+            {
+                client.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
