@@ -16,13 +16,13 @@ namespace OnlineShoppingStore.Controllers
     {
         dbMyOnlineShoppingEntities1 db = new dbMyOnlineShoppingEntities1();
 
-       
+
         public ActionResult Index()
         {
             return View();
         }
-    
-        
+
+
         public JsonResult SaveData(Tbl_Members model)
         {
             model.IsValid = false;
@@ -109,23 +109,22 @@ namespace OnlineShoppingStore.Controllers
             {
                 Session["UserID"] = DataItem.MemberId.ToString();
                 Session["UserName"] = DataItem.LastName.ToString();
+                Session["Role"] = DataItem.Role;
                 result = "Success";
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         public ActionResult AfterLogin(Tbl_Members model)
         {
-            var DataItem = db.Tbl_Members.Where(x => x.Role == model.Role).SingleOrDefault();
-
             if (Session["UserID"] != null)
             {
-                if (DataItem.Role == "Admin")
+                if (Session["Role"].ToString() == "Cliente")
                 {
-                    return RedirectToAction("DashBoard", "Admin");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("DashBoard", "Admin");
                 }
             }
             else

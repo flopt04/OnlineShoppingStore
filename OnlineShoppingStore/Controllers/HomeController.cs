@@ -27,9 +27,11 @@ namespace OnlineShoppingStore.Controllers
         {
             return View();
         }
+
+
         public ActionResult DecreaseQty(int productId)
         {
-             if(Session["cart"] != null)
+            if (Session["cart"] != null)
             {
                 List<Item> cart = (List<Item>)Session["cart"];
                 var product = ctx.Tbl_Product.Find(productId);
