@@ -36,6 +36,8 @@ namespace OnlineShoppingStore.Controllers
             List<Tbl_Category> allcategories = _unitOfWork.GetRepositoryInstance<Tbl_Category>().GetAllRecordsIQueryable().Where(i => i.IsDelete == false).ToList();
             return View(allcategories);
         }
+        
+      
         public ActionResult AddCategory()
         {
             return UpdateCategory(0);
@@ -67,8 +69,27 @@ namespace OnlineShoppingStore.Controllers
             _unitOfWork.GetRepositoryInstance<Tbl_Category>().Update(tbl);
             return RedirectToAction("Categories");
         }
+      
+        public ActionResult UpdateCategory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UpdateCategory(Tbl_Category tbl)
+        {
+            tbl.IsDelete = false;
+            _unitOfWork.GetRepositoryInstance<Tbl_Category>().Add(tbl);
+            return RedirectToAction("Categories");
+        }
 
-
+        [HttpPost]
+        void RemoveCategory(Tbl_Category tbl)
+        {
+            if (tbl.IsDelete == false)
+            {
+                _unitOfWork.GetRepositoryInstance<Tbl_Category>().Remove(tbl);
+            }
+        }
         public ActionResult Product()
         {
             return View(_unitOfWork.GetRepositoryInstance<Tbl_Product>().GetProduct());
@@ -117,6 +138,13 @@ namespace OnlineShoppingStore.Controllers
             tbl.CreatedDate = DateTime.Now;
             _unitOfWork.GetRepositoryInstance<Tbl_Product>().Add(tbl);
             return RedirectToAction("Product");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Index","Register");
         }
     }
 }

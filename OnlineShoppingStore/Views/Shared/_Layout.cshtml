@@ -25,11 +25,11 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#">Ms-Materiais Sustentaveis</a>
+            <a class="navbar-brand" href="Index">Ms-Materiais Sustentaveis</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Index">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Sobre Nos</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">Loja</a>
@@ -43,21 +43,28 @@
                 </ul>
                 <form method="post" class="form-inline my-2 my-lg-0" asp-action="Filter" style="padding-left: 20px; width: 20%;">
                     <input name="search" type="text" class="form-control" placeholder="Procure um produto..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                </form>
+                <form method="post" class="form-inline my-2 my-lg-0" asp-action="Filter" style=" width: 20%;">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
                 </form>
-                <div class="btn-group">
-                    <button style="margin: 0 7px;" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">Carrinho <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
-                    <div class="dropdown-menu">
-                        @if (Session["cart"] != null)
-                        {
-                            foreach (Item item in (List<Item>)Session["cart"])
-                            {
-                                <a href="@Url.Action("RemoveFromCart", "Home", new { productId = item.Product.ProductId })" class="dropdown-item">@item.Product.ProductName (@item.Quantity) <i class="bi bi-trash"></i></a><br />
-                                <a class="btn btn-success" href="@Url.Action("CheckOut", "Home")">Pagar</a>
-                            }
-                        }
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Register/Logout">Logout</a></li>
+                </ul>
+                    <form>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">Carrinho <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
+                            <div class="dropdown-menu">
+                                @if (Session["cart"] != null)
+                                {
+                                    foreach (Item item in (List<Item>)Session["cart"])
+                                    {
+                                        <a href="@Url.Action("RemoveFromCart", "Home", new { productId = item.Product.ProductId })" class="dropdown-item">@item.Product.ProductName (@item.Quantity) <i class="bi bi-trash"></i></a><br />
+                                        <a class="btn btn-success" href="@Url.Action("CheckOut", "Home")">Pagar</a>
+                                    }
+                                }
+                            </div>
                         </div>
-                </div>
+                    </form>
             </div>
         </div>
     </nav>

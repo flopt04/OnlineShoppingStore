@@ -1,4 +1,5 @@
 ﻿using OnlineShoppingStore.DAL;
+using Site_Projeto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace OnlineShoppingStore.Controllers
         public JsonResult SaveData(Tbl_Members model)
         {
             model.IsValid = false;
+            model.Password = Encripta.EncryptRSA(model.Password);
+            model.Role = "Cliente";
             db.Tbl_Members.Add(model);
             db.SaveChanges();
             BuildEmailTemplate(model.MemberId);
@@ -103,8 +106,9 @@ namespace OnlineShoppingStore.Controllers
 
         public JsonResult CheckValidUser(Tbl_Members model)
         {
+
             string result = "Fail";
-            var DataItem = db.Tbl_Members.Where(x => x.Email == model.Email && x.Password == model.Password).SingleOrDefault();
+            var DataItem = db.Tbl_Members.ToList().Where(x => x.Email == model.Email && Encripta.DecryptRSA(x.Password) == model.Password).SingleOrDefault();
             if (DataItem != null)
             {
                 Session["UserID"] = DataItem.MemberId.ToString();
